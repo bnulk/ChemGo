@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ChemGo": {
+      "commandName": "Project",
+      "commandLineArgs": "-h"
+    }
+  }
+}
