@@ -19,6 +19,8 @@ namespace ChemGo
                 app.Run();
                 if (app.IsAComputationalJob == false)
                 {
+                    CommandLine.ArgsDisposal.HelpOptionDisposer helpOptionDisposer = new CommandLine.ArgsDisposal.HelpOptionDisposer(app.HelpOptionType);
+                    helpOptionDisposer.Run();
                     return;
                 }
                 else

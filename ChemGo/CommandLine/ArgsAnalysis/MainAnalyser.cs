@@ -11,10 +11,6 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         /// 命令行参数
         /// </summary>
         private string[] args;
-        /// <summary>
-        /// 命令行类型
-        /// </summary>
-        private CommandLineType commandLineType;
 
         /// <summary>
         /// 是否为一个计算工作
@@ -23,8 +19,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         /// <summary>
         /// 是否为一个计算工作
         /// </summary>
-        public bool IsAComputionalJob { get => isAComputionalJob; }
-       
+        public bool IsAComputionalJob { get => isAComputionalJob; set => isAComputionalJob = value; }
+
         /// <summary>
         /// 帮助信息的类型
         /// </summary>
@@ -42,6 +38,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         /// 命令行信息
         /// </summary>
         public CommandLineInformation CommandLineInformation { get => commandLineInformation; set => commandLineInformation = value; }
+        
 
 
         /// <summary>
@@ -51,7 +48,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         public MainAnalyser(string[] args)
         {
             this.args = (string[])args.Clone();
-            isAComputionalJob = false;
+            IsAComputionalJob = false;
         }
 
         /// <summary>
@@ -63,19 +60,15 @@ namespace ChemGo.CommandLine.ArgsAnalysis
             switch (numberOfArgsValue)
             {
                 case 0:
-                    commandLineType = CommandLineType.zeroArgs;
                     ZeroArgsAnalysis();
                     break;
                 case 1:
-                    commandLineType = CommandLineType.singleArgs;
                     SingleArgsAnalysis(args[0]);
                     break;
                 case 2:
-                    commandLineType = CommandLineType.doubleArgs;
                     DoubleArgsAnalysis(args);
                     break;
                 default:
-                    commandLineType = CommandLineType.multiArgs;
                     MultiArgsAnalysis(args);
                     break;
             }
@@ -88,7 +81,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         {
             ZeroArgsAnalyser zeroValueAnalyser = new ZeroArgsAnalyser();
             zeroValueAnalyser.Run();
-            isAComputionalJob = zeroValueAnalyser.IsAComputionalJob;
+            IsAComputionalJob = zeroValueAnalyser.IsAComputionalJob;
             helpOptionType = zeroValueAnalyser.HelpOptionType;
         }
 
@@ -99,8 +92,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         {
             SingleArgsAnalyser singleArgsAnalyser = new SingleArgsAnalyser(arg);
             singleArgsAnalyser.Run();
-            isAComputionalJob = singleArgsAnalyser.IsAComputionalJob;
-            if(isAComputionalJob==true)
+            IsAComputionalJob = singleArgsAnalyser.IsAComputionalJob;
+            if(IsAComputionalJob==true)
             {
                 commandLineInformation = singleArgsAnalyser.CommandLineInformation;
             }
@@ -118,7 +111,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         {
             DoubleArgsAnalyser doubleArgsAnalyser = new DoubleArgsAnalyser(args);
             doubleArgsAnalyser.Run();
-            isAComputionalJob = doubleArgsAnalyser.IsAComputionalJob;
+            IsAComputionalJob = doubleArgsAnalyser.IsAComputionalJob;
             commandLineInformation = doubleArgsAnalyser.CommandLineInformation;
         }
 
@@ -130,7 +123,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         {
             MultiArgsAnalyser multiArgsAnalyser = new MultiArgsAnalyser(args);
             multiArgsAnalyser.Run();
-            isAComputionalJob = multiArgsAnalyser.IsAComputionalJob;
+            IsAComputionalJob = multiArgsAnalyser.IsAComputionalJob;
         }
     }
 }

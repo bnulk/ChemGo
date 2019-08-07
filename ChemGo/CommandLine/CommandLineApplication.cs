@@ -9,7 +9,6 @@ namespace ChemGo.CommandLine
         /// 命令行参数
         /// </summary>        
         private readonly string[] args;
-        private CommandLineType commandLineType;
 
         /// <summary>
         /// 是否为一个计算工作
@@ -58,12 +57,6 @@ namespace ChemGo.CommandLine
             isAComputationalJob = mainAnalyser.IsAComputionalJob;
             helpOptionType = mainAnalyser.HelpOptionType;
             commandLineInformation = mainAnalyser.CommandLineInformation;
-
-            if(isAComputationalJob==false)
-            {
-                ArgsDisposer.HelpOptionDisposer helpOptionDisposer = new ArgsDisposer.HelpOptionDisposer(helpOptionType);
-                helpOptionDisposer.Run();
-            }
         }
     }    
 }
