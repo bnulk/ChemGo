@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using ChemGo.Data;
 
 namespace ChemGo.CommandLine.ArgsAnalysis
@@ -72,6 +73,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
                     MultiArgsAnalysis(args);
                     break;
             }
+            ObtainInputFileType(commandLineInformation.inputFilePath);
         }
 
         /// <summary>
@@ -124,6 +126,27 @@ namespace ChemGo.CommandLine.ArgsAnalysis
             MultiArgsAnalyser multiArgsAnalyser = new MultiArgsAnalyser(args);
             multiArgsAnalyser.Run();
             IsAComputionalJob = multiArgsAnalyser.IsAComputionalJob;
+        }
+
+        /// <summary>
+        /// 根据扩展名，获取文件类型
+        /// </summary>
+        /// <returns>文件类型</returns>
+        private void ObtainInputFileType(string inputFilePath)
+        {
+            string extension = Path.GetExtension(inputFilePath);
+            switch (extension.ToLower())
+            {
+                case ".liu":
+                    commandLineInformation.inputFileType = InputFileType.ChemGo;
+                    break;
+                case ".gjf":
+                    commandLineInformation.inputFileType = InputFileType.Gaussian;
+                    break;
+                default:
+                    commandLineInformation.inputFileType = InputFileType.unknown;
+                    break;
+            }
         }
     }
 }

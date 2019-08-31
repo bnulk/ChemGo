@@ -17,7 +17,7 @@ namespace ChemGo
             {
                 CommandLineApplication app = new CommandLineApplication(args);
                 app.Run();
-                if (app.IsAComputationalJob == false)
+                if (app.IsAComputationalJob == false)                                               //打印帮助信息
                 {
                     CommandLine.ArgsDisposal.HelpOptionDisposer helpOptionDisposer = new CommandLine.ArgsDisposal.HelpOptionDisposer(app.HelpOptionType);
                     helpOptionDisposer.Run();
@@ -25,7 +25,7 @@ namespace ChemGo
                 }
                 else
                 {
-                    commandLineInformation = app.CommandLineInformation;
+                    commandLineInformation = app.CommandLineInformation;                            //输出命令行信息
                 }
             }
             catch (CommandLineException e)
@@ -34,6 +34,7 @@ namespace ChemGo
                 return;
             }
 
+            //命令行信息驱动后续程序
             Drive.MainDrive mainDrive = new Drive.MainDrive(commandLineInformation);
             mainDrive.Run();
 

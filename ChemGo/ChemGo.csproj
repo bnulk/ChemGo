@@ -5,4 +5,19 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Data_OtherPragram\**" />
+    <Compile Remove="Input\ReadLabels\ChemGo\**" />
+    <EmbeddedResource Remove="Data\Data_OtherPragram\**" />
+    <EmbeddedResource Remove="Input\ReadLabels\ChemGo\**" />
+    <None Remove="Data\Data_OtherPragram\**" />
+    <None Remove="Input\ReadLabels\ChemGo\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Auxiliary\Gaussian\InputFile\" />
+    <Folder Include="Auxiliary\Gaussian\OutputFile\" />
+    <Folder Include="Auxiliary\Gaussian\Interface\" />
+  </ItemGroup>
+
 </Project>

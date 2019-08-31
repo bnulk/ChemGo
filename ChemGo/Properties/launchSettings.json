@@ -2,7 +2,7 @@
   "profiles": {
     "ChemGo": {
       "commandName": "Project",
-      "commandLineArgs": "-h"
+      "commandLineArgs": "D:\\ChemGo\\ChemGo\\test\\kun.gjf"
     }
   }
 }
