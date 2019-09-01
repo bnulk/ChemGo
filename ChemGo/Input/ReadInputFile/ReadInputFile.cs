@@ -49,11 +49,11 @@ namespace ChemGo.Input.ReadInputFile
             //获取大括号内的内容：ChemGo标签；ChemGo和其它程序的交互部分。
             ReadLabels.ReadLabelsApplication readLabelsApplication = new ReadLabels.ReadLabelsApplication(commandLineInformation, inputList);
             readLabelsApplication.Run();
-            Labels = readLabelsApplication.Labels;
-            InterfaceBetweenGaussianAndChemGo = readLabelsApplication.InterfaceBetweenGaussianAndChemGo;            
+            labels = readLabelsApplication.Labels;
+            interfaceBetweenGaussianAndChemGo = readLabelsApplication.InterfaceBetweenGaussianAndChemGo;            
 
 
-            //根据文件类型，获取输入文件的结构对象。
+            //根据文件类型，获取内容为：其它程序输入文件的结构对象。
             switch (commandLineInformation.inputFileType)
             {
                 case InputFileType.Gaussian:

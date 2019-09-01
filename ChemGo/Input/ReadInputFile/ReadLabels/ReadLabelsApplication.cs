@@ -40,6 +40,8 @@ namespace ChemGo.Input.ReadInputFile.ReadLabels
                 case InputFileType.Gaussian:
                     ReadLabels_Gaussian readLabels_Gaussian = new ReadLabels_Gaussian(inputList);
                     readLabels_Gaussian.Run();
+                    labels = readLabels_Gaussian.Labels;
+                    interfaceBetweenGaussianAndChemGo = readLabels_Gaussian.InterfaceBetweenGaussianAndChemGo;
                     break;
                 case InputFileType.unknown:
                     break;
