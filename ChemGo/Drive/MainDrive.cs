@@ -15,10 +15,6 @@ namespace ChemGo.Drive
         /// ChemGo数据
         /// </summary>
         private Data_ChemGo data_ChemGo = new Data_ChemGo();
-        /// <summary>
-        /// 其它程序数据
-        /// </summary>
-        private Data.DataGaussian.Data_Gaussian data_Gaussian;
 
         /// <summary>
         /// 构造函数
@@ -28,6 +24,7 @@ namespace ChemGo.Drive
         {
             //填充命令行信息到data_ChemGo中
             data_ChemGo.commandLineInformation = commandLineInformation;
+
             //定义输出文件
             mainOutput = new Output.WriteOutput(data_ChemGo.commandLineInformation.outputFilePath);
 
@@ -37,7 +34,7 @@ namespace ChemGo.Drive
                 case InputFileType.ChemGo:
                     break;
                 case InputFileType.Gaussian:
-                    data_Gaussian = new Data.DataGaussian.Data_Gaussian();
+                    data_ChemGo.otherProgramData.data_Gaussian = new Data.DataGaussian.Data_Gaussian();
                     break;
                 default:
                     break;
@@ -52,19 +49,13 @@ namespace ChemGo.Drive
             //输出标题和命令行信息
             Drive_0_WriteTitleAndCommandLineInfo.WriteTitle(mainOutput);
             Drive_0_WriteTitleAndCommandLineInfo.WriteCmdLine(mainOutput, data_ChemGo.commandLineInformation);
+
             //读输入文件
-            Drive_1_ReadInputFile readInputFile = new Drive_1_ReadInputFile(data_ChemGo.commandLineInformation);
-            readInputFile.UpdateToChemGo(ref data_ChemGo);
-            switch (data_ChemGo.commandLineInformation.inputFileType)
-            {
-                case InputFileType.ChemGo:
-                    break;
-                case InputFileType.Gaussian:
-                    readInputFile.UpdateToGaussian(ref data_Gaussian);
-                    break;
-                default:
-                    break;
-            }
+            Drive_1_ReadInputFile drive_1 = new Drive_1_ReadInputFile(data_ChemGo.commandLineInformation);
+            drive_1.UpdateInputData(ref data_ChemGo);
+
+
         }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChemGo.Data.DataGaussian
 {
-    class Data_Gaussian
+    public class Data_Gaussian
     {
         /// <summary>
         /// 高斯和ChemGo相连信息
