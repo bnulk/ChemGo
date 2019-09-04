@@ -21,9 +21,14 @@ namespace ChemGo.Output
         */
 
         //全局变量        
-        public StringBuilder m_Result = new StringBuilder("");        //要输出的内容        
+        public StringBuilder m_Result = new StringBuilder();          //输出文件内容
+        public StringBuilder normal_Result = new StringBuilder();     //标准输出内容
+        public StringBuilder readWrite_Result = new StringBuilder();  //读写内容
+
         public StringBuilder Error = null;                            //显示错误用
         private string outputName = "Result.kun";                     //默认输出文件名
+        private string normalFileName = "Result.chemgo";              //标准输出文件名
+        private string readWriteFileName = "Result.rwchemgo";         //读写文件名
 
         /// <summary>
         /// 创建新文件，并把m_Result中的内容写入新文件
@@ -31,9 +36,11 @@ namespace ChemGo.Output
         /// <param name="outputName">新文件的名字</param>
         public WriteOutput(string outputName)
         {
+            this.outputName = outputName;
+            this.normalFileName = Path.ChangeExtension(outputName, "chemgo");
+            this.readWriteFileName = Path.ChangeExtension(outputName, "rwchemgo");
             try
             {
-                this.outputName = outputName;
                 StreamWriter createLogFile = File.CreateText(outputName);
                 createLogFile.Write(m_Result);
                 createLogFile.Flush();
@@ -48,7 +55,7 @@ namespace ChemGo.Output
         /// <summary>
         /// 在当前打开的写入文件中，继续写入m_Result中的内容。
         /// </summary>
-        public void Write()
+        public void WriteOutput_continue()
         {
             try
             {
@@ -70,22 +77,22 @@ namespace ChemGo.Output
         /// <summary>
         /// 在当前打开的写入文件中，写入一行。
         /// </summary>
-        public void WriteStr(string str)
+        public void WriteOutputStr(string str)
         {
             m_Result.Clear();
             m_Result.Append(str);
-            Write();
+            WriteOutput_continue();
             return;
         }
 
         /// <summary>
         /// 在当前打开的写入文件中，写入字符序列。
         /// </summary>
-        public void WriteStr(StringBuilder strB)
+        public void WriteOutputStr(StringBuilder strB)
         {
             m_Result.Clear();
             m_Result = strB;
-            Write();
+            WriteOutput_continue();
             return;
         }
 
@@ -129,5 +136,7 @@ namespace ChemGo.Output
                 Console.WriteLine("ChemGo.Output.WriteOutput::WriteError() died");
             }
         }
+
+
     }
 }

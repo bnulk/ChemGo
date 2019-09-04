@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using ChemGo.Data.DataGaussian;
 using ChemGo.Auxiliary.TextTools;
 
-namespace ChemGo.Input.InputFileReadingTools.GaussianInputFileReadingTools
+namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
 {
     class GaussianInfoReader
     {

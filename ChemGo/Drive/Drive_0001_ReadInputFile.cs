@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using ChemGo.Data;
-using ChemGo.Input.InputFileReadingTools;
+using ChemGo.Input.InputFileReadings;
 
 namespace ChemGo.Drive
 {
-    class Drive_1_ReadInputFile
+    class Drive_0001_ReadInputFile
     {
         private Data.InputFile inputfile;
         private Data.DataGaussian.InterfaceBetweenGaussianAndChemGo interfaceBetweenGaussianAndChemGo;
@@ -16,19 +16,21 @@ namespace ChemGo.Drive
         /// <summary>
         /// 读输入文件内容
         /// </summary>
-        public Drive_1_ReadInputFile(CommandLineInformation commandLineInformation)
+        public Drive_0001_ReadInputFile(CommandLineInformation commandLineInformation, Output.WriteOutput mainOutput)
         {
             try
             {
-                InputFileReader inputFileReader = new InputFileReader(commandLineInformation);
-                inputFileReader.Run();
-                inputfile = inputFileReader.InputFile;
-                interfaceBetweenGaussianAndChemGo = inputFileReader.InterfaceBetweenGaussianAndChemGo;
-                gaussianInputSegment = inputFileReader.GaussianInputSegment;
+                //运行应用
+                InputFileReadingApplication inputFileReadingApplication = new InputFileReadingApplication(commandLineInformation);
+                inputFileReadingApplication.Run();
+                //拿到运行应用的数据
+                inputfile = inputFileReadingApplication.InputFile;
+                interfaceBetweenGaussianAndChemGo = inputFileReadingApplication.InterfaceBetweenGaussianAndChemGo;
+                gaussianInputSegment = inputFileReadingApplication.GaussianInputSegment;
             }
             catch (ReadInputFileException e)
             {
-                Console.Write(e.Message);
+                mainOutput.WriteOutputStr(e.Message);
                 return;
             }
         }

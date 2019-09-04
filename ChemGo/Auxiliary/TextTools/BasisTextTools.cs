@@ -34,7 +34,7 @@ namespace ChemGo.Auxiliary.TextTools
         }
 
         /// <summary>
-        /// 得到两个字符串之间的部分
+        /// 得到两个字符串之间的部分。如果不存在两个字符串，则返回全部内容。
         /// </summary>
         /// <param name="original">原始字符串</param>
         /// <param name="start">开始字符串</param>
@@ -52,12 +52,14 @@ namespace ChemGo.Auxiliary.TextTools
 
             if (original.LastIndexOf(start) != indexStart)
             {
-                Console.WriteLine("More than one "+ start + " are found" + "/n");
+                result = "";
+                return original;
             }
 
             if (indexStart == -1 || indexEnd == -1)
             {
-                Console.WriteLine("Can not find " + start + " and " + end + " in the input file." + "/n");
+                result = "";
+                return original;
             }
 
             result = original.Remove(indexEnd, original.Length - indexEnd);
@@ -68,7 +70,7 @@ namespace ChemGo.Auxiliary.TextTools
         }
 
         /// <summary>
-        /// 获取两个字符串之外的部分
+        /// 获取两个字符串之外的部分。如果不存在两个字符串，则返回全部内容。
         /// </summary>
         /// <param name="original">原始字符串</param>
         /// <param name="start">开始字符串</param>
@@ -84,8 +86,57 @@ namespace ChemGo.Auxiliary.TextTools
             indexStart = original.IndexOf(start);
             indexEnd = original.IndexOf(end);
 
+            if (original.LastIndexOf(start) != indexStart)
+            {
+                result = "";
+                return original;
+            }
+
+            if (indexStart == -1 || indexEnd == -1)
+            {
+                result = "";
+                return original;
+            }
+
             result = original.Remove(indexStart, indexEnd - indexStart + end.Length);
 
+            return result;
+        }
+
+        /// <summary>
+        /// 以字符串数组形式，返回被空格分隔的字符串。
+        /// </summary>
+        /// <param name="original">字符串</param>
+        /// <returns>被空格分离的字符串构成的数组</returns>
+        public static string[] GetStringSeparatedbySpaces(string original)
+        {
+            string[] result;
+            result = Regex.Split(original, "\\s+", RegexOptions.IgnoreCase);
+
+            /*
+            string[] result;
+            string[] tmpResult;
+            List<string> tmpList = new List<string>();
+            int i;
+            int n;
+
+            tmpResult = original.Split(' ');
+            n = tmpResult.Length;
+            for(i=0;i<n;i++)
+            {
+                if(tmpResult[i]!="")
+                {
+                    tmpList.Add(tmpResult[i]);
+                }
+            }
+
+            n = tmpList.Count;
+            result = new string[n];
+            for(i=0;i<n;i++)
+            {
+                result[i] = tmpList[i];
+            }
+            */
             return result;
         }
     }

@@ -22,10 +22,14 @@ namespace ChemGo.Data
     {
         public Labels labels;
         public ChargeAndMultiplicity chargeAndMultiplicity;
+        public CoordinateType coordinateType;
         public InputCartesian inputCartesian;
         public InputZmatrix inputZmatrix;
     }
     
+    /// <summary>
+    /// 其它程序的数据
+    /// </summary>
     public struct OtherProgramData
     {
         public DataGaussian.Data_Gaussian data_Gaussian;

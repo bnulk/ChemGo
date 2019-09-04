@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChemGo.Drive
 {
-    static class Drive_0_WriteTitleAndCommandLineInfo
+    static class Drive_0000_WriteTitleAndCommandLineInfo
     {
         public static void WriteTitle(Output.WriteOutput kunOutput)
         {
@@ -59,7 +59,7 @@ namespace ChemGo.Drive
             m_Result.Append("" + "\n");
 
             kunOutput.m_Result = m_Result;
-            kunOutput.Write();
+            kunOutput.WriteOutput_continue();
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace ChemGo.Drive
             m_Result.Append("outputName: " + commandLineInformation.outputFilePath.ToString() + "\n");
 
             kunOutput.m_Result = m_Result;
-            kunOutput.Write();
+            kunOutput.WriteOutput_continue();
         }
     }
 }

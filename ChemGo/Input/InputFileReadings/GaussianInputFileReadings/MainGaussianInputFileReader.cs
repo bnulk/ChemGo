@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ChemGo.Data;
 
-namespace ChemGo.Input.InputFileReadingTools.GaussianInputFileReadingTools
+namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
 {
     class MainGaussianInputFileReader
     {
@@ -40,10 +40,17 @@ namespace ChemGo.Input.InputFileReadingTools.GaussianInputFileReadingTools
             chemGoInfoReader.Run();
             this.interfaceBetweenGaussianAndChemGo = chemGoInfoReader.InterfaceBetweenGaussianAndChemGo;
             this.inputFile.labels = chemGoInfoReader.Labels;
-            //读输入文件在的Gaussian部分
+            //读输入文件的Gaussian部分
             GaussianInfoReader gaussianInfoReader = new GaussianInfoReader(inputList);
             gaussianInfoReader.Run();
             this.gaussianInputSegment = gaussianInfoReader.GaussianInputSegment;
+            //把Gaussian部分信息写入ChemGo的InputFile结构对象
+            TransferGaussianInfoToChemGo transferGaussianInfoToChemGo = new TransferGaussianInfoToChemGo(gaussianInputSegment);
+            transferGaussianInfoToChemGo.Run();
+            this.inputFile.chargeAndMultiplicity = transferGaussianInfoToChemGo.ChargeAndMultiplicity;
+            this.inputFile.coordinateType = transferGaussianInfoToChemGo.CoordinateType;
+            this.inputFile.inputCartesian = transferGaussianInfoToChemGo.InputCartesian;
+            this.inputFile.inputZmatrix = transferGaussianInfoToChemGo.InputZmatrix;
         }
 
     }

@@ -12,5 +12,7 @@ namespace ChemGo.Data.DataGaussian
         public InterfaceBetweenGaussianAndChemGo interfaceBetweenGaussianAndChemGo;
 
         public GaussianInputSegment gaussianInputSegment;
+
+        
     }
 }

@@ -1,5 +1,5 @@
 %mem=1000mb
-#p b3lyp/6-31g* freq=noraman IOP(7/33=1)
+#p b3lyp/6-31g* freq=noraman IOP(7/33=1) {task=mecp}
 
 ffff
 

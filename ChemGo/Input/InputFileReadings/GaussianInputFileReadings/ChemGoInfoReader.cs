@@ -5,7 +5,7 @@ using ChemGo.Data;
 using ChemGo.Data.DataGaussian;
 using ChemGo.Auxiliary.TextTools;
 
-namespace ChemGo.Input.InputFileReadingTools.GaussianInputFileReadingTools
+namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
 {
     class ChemGoInfoReader
     {

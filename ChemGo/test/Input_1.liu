@@ -1,0 +1,23 @@
+<ChemGo>
+
+
+  <Control>
+    task=SP coordinate=cartesian charge=0  multiplicity=1
+  </Control>
+ 
+ 
+  <Molecule>    
+ H              
+ N                  1            B1
+ C                  2            B2    1            A1
+ O                  3            B3    2            A2    1            D1    0
+
+   B1             1.00641112
+   B2             1.35533859
+   B3             1.16178187
+   A1           110.13306564
+   A2           129.01488582
+   D1           180.00000000 
+  </Molecule>
+
+</ChemGo>

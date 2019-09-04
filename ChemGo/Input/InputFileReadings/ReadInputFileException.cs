@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChemGo.Input.InputFileReadingTools
+namespace ChemGo.Input.InputFileReadings
 {
     class ReadInputFileException : Exception
     {
@@ -21,6 +21,7 @@ namespace ChemGo.Input.InputFileReadingTools
         /// 消息
         /// </summary>
         private readonly string message;
+        private readonly string title = "\n\nbnulk@foxmail.com-ReadInputFileException\n" + "*********************************************\n\n" + "!!!!!!!!!! Error !!!!!!!!!!\n";
         public override string Message
         {
             get
@@ -43,7 +44,7 @@ namespace ChemGo.Input.InputFileReadingTools
         public ReadInputFileException(string message)
             : base(message)
         {
-            this.message = message;
+            this.message = title + message;
         }
     }
 }

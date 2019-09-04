@@ -4,9 +4,9 @@ using System.Text;
 using System.IO;
 using ChemGo.Data;
 
-namespace ChemGo.Input.InputFileReadingTools
+namespace ChemGo.Input.InputFileReadings
 {
-    class InputFileReader
+    class InputFileReadingApplication
     {
         private CommandLineInformation commandLineInformation;
         private List<string> inputList;
@@ -37,7 +37,7 @@ namespace ChemGo.Input.InputFileReadingTools
         /// 构造函数
         /// </summary>
         /// <param name="commandLineInformation"></param>
-        public InputFileReader(CommandLineInformation commandLineInformation)
+        public InputFileReadingApplication(CommandLineInformation commandLineInformation)
         {
             this.commandLineInformation = commandLineInformation;
         }
@@ -48,9 +48,11 @@ namespace ChemGo.Input.InputFileReadingTools
             //获取文件列
             ObtainInputList();
 
+            //把输入文件读入程序
             switch(commandLineInformation.inputFileType)
             {
                 case InputFileType.ChemGo:
+                    ReadChemGoTypeInputFile();
                     break;
                 case InputFileType.Gaussian:
                     ReadGaussianTypeInputFile();
@@ -85,11 +87,21 @@ namespace ChemGo.Input.InputFileReadingTools
         /// </summary>
         private void ReadGaussianTypeInputFile()
         {
-            GaussianInputFileReadingTools.MainGaussianInputFileReader mainGaussianInputFileReader = new GaussianInputFileReadingTools.MainGaussianInputFileReader(inputList);
+            GaussianInputFileReadings.MainGaussianInputFileReader mainGaussianInputFileReader = new GaussianInputFileReadings.MainGaussianInputFileReader(inputList);
             mainGaussianInputFileReader.Run();
             this.inputFile = mainGaussianInputFileReader.InputFile;
             this.interfaceBetweenGaussianAndChemGo = mainGaussianInputFileReader.InterfaceBetweenGaussianAndChemGo;
             this.gaussianInputSegment = mainGaussianInputFileReader.GaussianInputSegment;
+        }
+
+        /// <summary>
+        /// 读ChemGo型的输入文件
+        /// </summary>
+        private void ReadChemGoTypeInputFile()
+        {
+            ChemGoInputFileReadings.MainChemGoInputFileReader mainChemGoInputFileReader = new ChemGoInputFileReadings.MainChemGoInputFileReader(inputList);
+            mainChemGoInputFileReader.Run();
+            this.inputFile = mainChemGoInputFileReader.InputFile;
         }
     }
 }

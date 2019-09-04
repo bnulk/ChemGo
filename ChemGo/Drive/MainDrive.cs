@@ -47,14 +47,12 @@ namespace ChemGo.Drive
         public void Run()
         {            
             //输出标题和命令行信息
-            Drive_0_WriteTitleAndCommandLineInfo.WriteTitle(mainOutput);
-            Drive_0_WriteTitleAndCommandLineInfo.WriteCmdLine(mainOutput, data_ChemGo.commandLineInformation);
+            Drive_0000_WriteTitleAndCommandLineInfo.WriteTitle(mainOutput);
+            Drive_0000_WriteTitleAndCommandLineInfo.WriteCmdLine(mainOutput, data_ChemGo.commandLineInformation);
 
             //读输入文件
-            Drive_1_ReadInputFile drive_1 = new Drive_1_ReadInputFile(data_ChemGo.commandLineInformation);
-            drive_1.UpdateInputData(ref data_ChemGo);
-
-
+            Drive_0001_ReadInputFile drive_0001 = new Drive_0001_ReadInputFile(data_ChemGo.commandLineInformation, mainOutput);
+            drive_0001.UpdateInputData(ref data_ChemGo);
         }
 
     }

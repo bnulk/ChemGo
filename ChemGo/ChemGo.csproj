@@ -18,7 +18,6 @@
     <Folder Include="Auxiliary\Gaussian\InputFile\" />
     <Folder Include="Auxiliary\Gaussian\OutputFile\" />
     <Folder Include="Auxiliary\Gaussian\Interface\" />
-    <Folder Include="Input\InputFileReadingTools\ChemGoInputFileReadingTools\" />
   </ItemGroup>
 
 </Project>

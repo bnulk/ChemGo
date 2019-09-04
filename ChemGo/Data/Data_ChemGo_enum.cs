@@ -12,7 +12,8 @@ namespace ChemGo.Data
         mecp,
         ts,
         min,
-        sp
+        sp,
+        unknown
     }
 
     /// <summary>
@@ -24,4 +25,15 @@ namespace ChemGo.Data
         Gaussian,
         ChemGo
     }
+
+    /// <summary>
+    /// 坐标类型
+    /// </summary>
+    public enum CoordinateType
+    {
+        zMatrix,
+        Cartesian
+    }
+
+    
 }

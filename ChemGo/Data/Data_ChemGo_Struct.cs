@@ -21,13 +21,17 @@ namespace ChemGo.Data
         /// </summary>
         public Task task;
         /// <summary>
-        /// 使用的计算程序
+        /// 计算过程中使用的坐标类型
         /// </summary>
-        public string calProgram;
+        public InputFileType inputFileType;
         /// <summary>
         /// 计算过程中使用的坐标类型
         /// </summary>
-        public string coordinateType;
+        public CoordinateType coordinateType;
+        /// <summary>
+        /// 电荷和自旋多重度
+        /// </summary>
+        public ChargeAndMultiplicity chargeAndMultiplicity;
     }
 
     /// <summary>
@@ -64,11 +68,11 @@ namespace ChemGo.Data
     public struct ChargeAndMultiplicity
     {
         /// <summary>
-        /// 总电荷
+        /// 电荷
         /// </summary>
         public int[] charge;
         /// <summary>
-        /// 总自旋角动量
+        /// 自旋角动量
         /// </summary>
         public int[] multiplicity;
     }
@@ -93,7 +97,11 @@ namespace ChemGo.Data
         /// <summary>
         /// 坐标矩阵，N行4列。
         /// </summary>
-        public double[,] Coordinates;
+        public string[,] coordinates;
+        /// <summary>
+        /// 坐标名称矩阵，N行3列。
+        /// </summary>
+        public string[,] coordinateNames;
     }
 
     /// <summary>
@@ -116,11 +124,11 @@ namespace ChemGo.Data
         /// <summary>
         /// 坐标矩阵，N行7列。
         /// </summary>
-        public double[,] Coordinates;
+        public string[,] coordinates;
         /// <summary>
         /// 参数矩阵，3N-6行2列。
         /// </summary>
-        public double[,] Parameter;
+        public string[,] parameter;
     }
 
     /// <summary>
@@ -141,9 +149,9 @@ namespace ChemGo.Data
         /// </summary>
         public double[] realAtomicWeights;
         /// <summary>
-        /// 标准取向坐标矩阵，N行4列
+        /// 标准取向坐标矩阵，N行3列
         /// </summary>
-        public double[,] StandardOrientationCoordinates;
+        public double[,] standardOrientationCoordinates;
     }
 
 
