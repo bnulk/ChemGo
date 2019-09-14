@@ -32,6 +32,7 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
         public ChemGoInfoReader(List<string> inputList)
         {
             this.inputList = inputList;
+            labels.control.inputFileType = InputFileType.Gaussian;
         }
 
         public void Run()

@@ -1,6 +1,6 @@
-%mem=64mb
+%mem=1000mb
 %chk=LiuKun1.chk LiuKun2.chk
-#p hf/sto-3g scf=maxcycle=200 {cmd=g09 task=mecp  opt=sqp   hessianN=5 stepSize=0.2 sqp_tao=0.9 <b3lyp | b3lyp td> mecpfreq}
+#p 6-31g* scf=maxcycle=200 {cmd=g09 task=mecp  opt=sqp   hessianN=5 stepSize=0.2 sqp_tao=0.9 <b3lyp | b3lyp td(root=1)> mecpfreq}
  
 T1
  

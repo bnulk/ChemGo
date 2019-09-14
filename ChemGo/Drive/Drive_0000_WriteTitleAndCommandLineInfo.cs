@@ -66,7 +66,7 @@ namespace ChemGo.Drive
         /// 文本输出“命令行参数”
         /// </summary>
         /// <param name="cmdData">命令行参数</param>
-        public static void WriteCmdLine(Output.WriteOutput kunOutput, Data.CommandLineInformation commandLineInformation)
+        public static void WriteCmdLine(Data.CommandLineInformation commandLineInformation, Output.WriteOutput kunOutput)
         {
             StringBuilder m_Result = new StringBuilder();
             //输入的命令行标志

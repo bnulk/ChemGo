@@ -48,11 +48,22 @@ namespace ChemGo.Drive
         {            
             //输出标题和命令行信息
             Drive_0000_WriteTitleAndCommandLineInfo.WriteTitle(mainOutput);
-            Drive_0000_WriteTitleAndCommandLineInfo.WriteCmdLine(mainOutput, data_ChemGo.commandLineInformation);
+            Drive_0000_WriteTitleAndCommandLineInfo.WriteCmdLine(data_ChemGo.commandLineInformation, mainOutput);
 
             //读输入文件
             Drive_0001_ReadInputFile drive_0001 = new Drive_0001_ReadInputFile(data_ChemGo.commandLineInformation, mainOutput);
             drive_0001.UpdateInputData(ref data_ChemGo);
+
+            //根据计算任务，驱动计算流程。
+            switch(data_ChemGo.inputFile.labels.control.task)
+            {
+                case Task.mecp:                //极小势能面交叉点任务
+                    Functions.Mecp.MecpApplication app = new Functions.Mecp.MecpApplication(data_ChemGo);
+                    app.Run();
+                    break;
+                default:
+                    throw new DriveException("Unknown computational tasks.\n  ChemGo.Drive.MainDrive.Run() Error \n");
+            }
         }
 
     }
