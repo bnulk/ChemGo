@@ -2,13 +2,22 @@
 
 namespace ChemGo.Data
 {
+
+    /// <summary>
+    /// 输出信息合集
+    /// </summary>
+    public struct OutputInfo
+    {
+        public Output.WriteOutput mainOutput;                  //主输出信息
+    }
+
     /// <summary>
     /// 标签合集
     /// </summary>
     public struct Labels
     {
         public Control control;
-        public Mecp mecp;
+        public Keyword_Mecp keyword_mecp;
     }
 
     /// <summary>
@@ -21,7 +30,7 @@ namespace ChemGo.Data
         /// </summary>
         public Task task;
         /// <summary>
-        /// 计算过程中使用的坐标类型
+        /// 计算过程中使用的文件类型
         /// </summary>
         public InputFileType inputFileType;
         /// <summary>
@@ -29,25 +38,24 @@ namespace ChemGo.Data
         /// </summary>
         public CoordinateType coordinateType;
         /// <summary>
-        /// 电荷和自旋多重度
+        /// 控制行命令
         /// </summary>
-        public ChargeAndMultiplicity chargeAndMultiplicity;
+        public string cmd;
     }
 
     /// <summary>
     /// Mecp关键词
     /// </summary>
-    public struct Mecp
+    public struct Keyword_Mecp
     {
         public string opt;                                   //优化方法
         public string coordinateType;                        //坐标类型，包括"z-matrix"和"cartesian"
-        public string file1;                                 //第一个态的文件名
-        public string file2;                                 //第二个态的文件名
         public string scfTyp1;                               //第一个态的自洽场类型
         public string scfTyp2;                               //第二个态的自洽场类型
         public int maxCyc;                                   //最大循环次数
         public double stepSize;                              //步长
         public string guessHessian;                          //估计Hessian阵的方式，包括两种方式，默认为1、"BFGS"，即BFGS方法； 另一种是2、"Powell"，即Powell方法
+        public int gradientN;                                //计算Gradient阵的间隔步，即每隔gradientStep步计算一次力常数矩阵
         public int hessianN;                                 //计算Hessian阵的间隔步，即每隔hessianStep步计算一次力常数矩阵
         public double energyCon;                             //收敛限能量
         public double maxCon;                                //最大拉格朗日力
@@ -67,6 +75,10 @@ namespace ChemGo.Data
     /// </summary>
     public struct ChargeAndMultiplicity
     {
+        /// <summary>
+        /// 部分的个数
+        /// </summary>
+        public int numberOfPart;
         /// <summary>
         /// 电荷
         /// </summary>
@@ -131,6 +143,38 @@ namespace ChemGo.Data
         public string[,] parameter;
     }
 
+  
+    /// <summary>
+    /// 内坐标
+    /// </summary>
+    public struct ZMatrix
+    {
+        /// <summary>
+        /// 原子个数
+        /// </summary>
+        public int numberOfAtoms;
+        /// <summary>
+        /// 原子序号（核电荷数）数组
+        /// </summary>
+        public int[] atomicNumbers;
+        /// <summary>
+        /// 原子量数组
+        /// </summary>
+        public double[] realAtomicWeights;
+        /// <summary>
+        /// 坐标矩阵，N行7列。
+        /// </summary>
+        public string[,] coordinates;
+        /// <summary>
+        /// 参数名
+        /// </summary>
+        public string[] parameterName;
+        /// <summary>
+        /// 参数值
+        /// </summary>
+        public double[] parameterValue;
+    }
+
     /// <summary>
     /// 分子标准取向的几何结构
     /// </summary>
@@ -154,11 +198,10 @@ namespace ChemGo.Data
         public double[,] standardOrientationCoordinates;
     }
 
-
     /// <summary>
-    /// 梯度和力常数相关的信息
+    /// 内坐标下梯度和力常数相关的信息
     /// </summary>
-    public struct DerivativeInfo
+    public struct DerivativeInfo_ZMatrix
     {
         /// <summary>
         /// 坐标
@@ -173,4 +216,24 @@ namespace ChemGo.Data
         /// </summary>
         public double[,] forceConstants;
     }
+
+    /// <summary>
+    /// 笛卡尔坐标下梯度和力常数相关的信息
+    /// </summary>
+    public struct DerivativeInfo_Cartesian
+    {
+        /// <summary>
+        /// 坐标
+        /// </summary>
+        public double[] coordinates;
+        /// <summary>
+        /// 梯度
+        /// </summary>
+        public double[] gradient;
+        /// <summary>
+        /// 力常数矩阵
+        /// </summary>
+        public double[,] forceConstants;
+    }
+
 }

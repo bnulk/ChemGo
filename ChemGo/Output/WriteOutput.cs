@@ -5,7 +5,7 @@ using System.IO;
 
 namespace ChemGo.Output
 {
-    partial class WriteOutput
+    public class WriteOutput
     {
         /*
         ----------------------------------------------------  类注释  开始----------------------------------------------------

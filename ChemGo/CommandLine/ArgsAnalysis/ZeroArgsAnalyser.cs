@@ -44,8 +44,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
             isAComputionalJob = false;
             helpOptionType = HelpOptionType.unknown;
             commandLineInformation.currentDirectory = null;
-            commandLineInformation.inputFilePath = null;
-            commandLineInformation.outputFilePath = null;
+            commandLineInformation.inputFileFullPath = null;
+            commandLineInformation.outputFileFullPath = null;
         }
     }
 }

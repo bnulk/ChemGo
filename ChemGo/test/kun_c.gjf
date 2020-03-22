@@ -1,0 +1,14 @@
+%mem=1000mb
+%chk=LiuKun1.chk LiuKun2.chk
+#p sto-3g scf=maxcycle=200 {cmd=g09 task=mecp lambda=1.17 opt=ln  hessianN=1 stepSize=1 <hf | hf> mecpfreq maxCon=0.0005  rmsCon=0.0001 }
+ 
+T1
+ 
+0 1 0 3
+ H                  0.00000000    0.00000000    0.00000000
+ N                  0.00000000    0.00000000    1.25083700
+ C                  1.29817076    0.00000000    1.66504761
+ O                  1.84803831   -0.03092276    2.76999081
+ 
+
+

@@ -111,6 +111,7 @@ namespace ChemGo.Auxiliary.TextTools
         public static string[] GetStringSeparatedbySpaces(string original)
         {
             string[] result;
+            original = original.Trim();
             result = Regex.Split(original, "\\s+", RegexOptions.IgnoreCase);
 
             /*

@@ -1,0 +1,18 @@
+%mem=1000MB
+%chk=D:\ChemGo\ChemGo\test\LiuKun1.chk LiuKun2.chk
+#p opt=ln sto-3g geom=connectivity <hf hessiann=1 hf> lambda=1.17
+mecpfreq} scf=maxcycle=200 stepsize=1 task=mecp {cmd=g09 |
+
+T1
+
+0 1
+ H                  0.00000000    0.00000000    0.00000000
+ N                  0.00000000    0.00000000    1.25083700
+ C                  1.29817076    0.00000000    1.66504761
+ O                  1.84803831   -0.03092276    2.76999081
+
+ 1
+ 2 3 1.5
+ 3 4 2.0
+ 4
+

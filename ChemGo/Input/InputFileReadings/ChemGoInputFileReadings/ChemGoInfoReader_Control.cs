@@ -67,12 +67,6 @@ namespace ChemGo.Input.InputFileReadings.ChemGoInputFileReadings
                         case "coordinate":
                             control.coordinateType = ReadInputFileTools.GetCoordinateType(inputKeyWord[1].ToLower());
                             break;
-                        case "charge":
-                            control.chargeAndMultiplicity.charge = ReadCharge(inputKeyWord[1].ToLower());
-                            break;
-                        case "multiplicity":
-                            control.chargeAndMultiplicity.multiplicity = ReadMultiplicity(inputKeyWord[1].ToLower());
-                            break;
                         default:
                             break;
                     }

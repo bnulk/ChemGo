@@ -79,6 +79,7 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
             }
               
             int numberOfPart = listResult.Count / 2;
+            chargeAndMultiplicity.numberOfPart = numberOfPart;
             chargeAndMultiplicity.charge = new int[numberOfPart];
             chargeAndMultiplicity.multiplicity = new int[numberOfPart];
             for(int i=0;i<numberOfPart;i++)

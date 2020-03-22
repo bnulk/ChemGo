@@ -13,6 +13,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         private string arg;
 
         private string currentDirectory;
+        private string inputFileDirectory;
         private string inputFileFullPath;
         private string outputFileFullPath;
 
@@ -28,6 +29,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
         /// 输出文件绝对路径
         /// </summary>
         public string OutputFileFullPath { get => outputFileFullPath; set => outputFileFullPath = value; }
+        //输入文件所在目录
+        public string InputFileDirectory { get => inputFileDirectory; set => inputFileDirectory = value; }
 
         /// <summary>
         /// 构造函数
@@ -69,6 +72,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
                 {
                     inputFileFullPath = Path.Combine(currentDirectory, arg);
                 }
+                //获取输入文件所在的目录
+                InputFileDirectory = Path.GetDirectoryName(inputFileFullPath);
             }
             else
             {

@@ -54,6 +54,8 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
             InitializeTaskLabel();
             //获取任务的标签信息
             ObtainTaskLabel();
+            //获取控制部分的关键词信息
+            ObtainControlParameter();
         }
 
         /// <summary>
@@ -207,6 +209,44 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
         }
 
         /// <summary>
+        /// 获取Control的关键词参数
+        /// </summary>
+        private void ObtainControlParameter()
+        {
+            //初始化
+            labels.control.cmd = interfaceBetweenGaussianAndChemGo.cmd;
+            labels.control.task = interfaceBetweenGaussianAndChemGo.task;
+            labels.control.inputFileType = InputFileType.Gaussian;
+            //从输入文件中获取
+            int n = keywordAndParameter.GetLength(0);
+            for (int i = 0; i < n; i++)
+            {
+                switch (keywordAndParameter[i, 0].ToLower())
+                {
+                    case "cmd":
+                        labels.control.cmd = keywordAndParameter[i, 1];
+                        break;
+                    case "coordinatetype":
+                        switch(keywordAndParameter[i, 1].ToLower())
+                        {
+                            case "zmatrix":
+                                labels.control.coordinateType = CoordinateType.zMatrix;
+                                break;
+                            case "cartesian":
+                                labels.control.coordinateType = CoordinateType.Cartesian;
+                                break;
+                            default:
+                                labels.control.coordinateType = CoordinateType.noInfo;
+                                break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         /// 获取Mecp关键词
         /// </summary>
         private void ObtainMecpLabel()
@@ -218,58 +258,62 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
                 switch (keywordAndParameter[i, 0].ToLower())
                 {
                     case "opt":
-                        labels.mecp.opt = keywordAndParameter[i, 1];
+                        labels.keyword_mecp.opt = keywordAndParameter[i, 1];
                         break;
                     case "coordinatetype":
-                        labels.mecp.coordinateType = keywordAndParameter[i, 1];
-                        break;
-                    case "file1":
-                        labels.mecp.file1 = keywordAndParameter[i, 1];
-                        break;
-                    case "file2":
-                        labels.mecp.file2 = keywordAndParameter[i, 1];
+                        labels.keyword_mecp.coordinateType = keywordAndParameter[i, 1];
                         break;
                     case "scftyp1":
-                        labels.mecp.scfTyp1 = keywordAndParameter[i, 1];
+                        labels.keyword_mecp.scfTyp1 = keywordAndParameter[i, 1];
                         break;
                     case "scftyp2":
-                        labels.mecp.scfTyp2 = keywordAndParameter[i, 1];
+                        labels.keyword_mecp.scfTyp2 = keywordAndParameter[i, 1];
                         break;
                     case "maxcyc":
-                        labels.mecp.maxCyc = Convert.ToInt32(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.maxCyc = Convert.ToInt32(keywordAndParameter[i, 1]);
                         break;
                     case "stepsize":
-                        labels.mecp.stepSize = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.stepSize = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        break;
+                    case "gradientn":
+                        labels.keyword_mecp.gradientN = Convert.ToInt32(keywordAndParameter[i, 1]);
                         break;
                     case "hessiann":
-                        labels.mecp.hessianN = Convert.ToInt32(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.hessianN = Convert.ToInt32(keywordAndParameter[i, 1]);
                         break;
                     case "energycon":
-                        labels.mecp.energyCon = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.energyCon = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "maxcon":
-                        labels.mecp.maxCon = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.maxCon = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "rmscon":
-                        labels.mecp.rmsCon = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.rmsCon = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "lambda":
-                        labels.mecp.lambda = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.lambda = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "isreadfirst":
-                        labels.mecp.isReadFirst = Convert.ToBoolean(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.isReadFirst = Convert.ToBoolean(keywordAndParameter[i, 1]);
                         break;
                     case "showgradratiocriterionn":
-                        labels.mecp.showGradRatioCriterionN = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.showGradRatioCriterionN = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "showgradratiocriterion":
-                        labels.mecp.showGradRatioCriterion = Convert.ToDouble(keywordAndParameter[i, 1]);
+                        labels.keyword_mecp.showGradRatioCriterion = Convert.ToDouble(keywordAndParameter[i, 1]);
                         break;
                     case "judgement":
-                        labels.mecp.judgement = keywordAndParameter[i, 1];
+                        labels.keyword_mecp.judgement = keywordAndParameter[i, 1];
                         break;
                     case "mecpfreq":
-                        labels.mecp.mecpFreq = keywordAndParameter[i, 1];
+                        if(keywordAndParameter[i, 1]!=null)
+                        {
+                            labels.keyword_mecp.mecpFreq = keywordAndParameter[i, 1];
+                        }
+                        else
+                        {
+                            labels.keyword_mecp.mecpFreq = "liu";
+                        }
                         break;
                     default:
                         break;
@@ -305,26 +349,25 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
 
         private void InitializeMecpLabel()
         {
-            labels.mecp.coordinateType = "zmatrix";
-            labels.mecp.energyCon = 0.00001;
-            labels.mecp.file1 = "State1.gjf";
-            labels.mecp.file2 = "State2.gjf";
-            labels.mecp.guessHessian = "bfgs";
-            labels.mecp.hessianN = 1;
-            labels.mecp.isReadFirst = false;
-            labels.mecp.judgement = "global";
-            labels.mecp.lambda = 0.1;
-            labels.mecp.maxCon = 0.001;
-            labels.mecp.maxCyc = 100;
-            labels.mecp.mecpFreq = "liu";
-            labels.mecp.opt = "ln";
-            labels.mecp.rmsCon = 0.0005;
-            labels.mecp.scfTyp1 = "hftyp";
-            labels.mecp.scfTyp2 = "hftyp";
-            labels.mecp.showGradRatioCriterion = 0.0001;
-            labels.mecp.showGradRatioCriterionN = 4;
-            labels.mecp.sqp_tao = 0.01;
-            labels.mecp.stepSize = 0.1;
+            labels.keyword_mecp.coordinateType = "noInfo";
+            labels.keyword_mecp.energyCon = 0.00001;
+            labels.keyword_mecp.guessHessian = "bfgs";
+            labels.keyword_mecp.gradientN = 1;
+            labels.keyword_mecp.hessianN = 1;
+            labels.keyword_mecp.isReadFirst = false;
+            labels.keyword_mecp.judgement = "global";
+            labels.keyword_mecp.lambda = 0.1;
+            labels.keyword_mecp.maxCon = 0.001;
+            labels.keyword_mecp.maxCyc = 100;
+            labels.keyword_mecp.mecpFreq = "liu";
+            labels.keyword_mecp.opt = "ln";
+            labels.keyword_mecp.rmsCon = 0.0005;
+            labels.keyword_mecp.scfTyp1 = "hftyp";
+            labels.keyword_mecp.scfTyp2 = "hftyp";
+            labels.keyword_mecp.showGradRatioCriterion = 0.0001;
+            labels.keyword_mecp.showGradRatioCriterionN = 4;
+            labels.keyword_mecp.sqp_tao = 0.01;
+            labels.keyword_mecp.stepSize = 0.1;
         }
 
     }

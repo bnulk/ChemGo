@@ -58,7 +58,7 @@ namespace ChemGo.Input.InputFileReadings
                     ReadGaussianTypeInputFile();
                     break;
                 default:
-                    throw new ReadInputFileException("InputFileType Error. ChemGo.Input.ReadInputFile.ReadInputFile.Run()");
+                    throw new ReadInputFileException("InputFileType Error. \n ChemGo.Input.ReadInputFile.ReadInputFile.Run()");
             }
             
         }
@@ -70,7 +70,7 @@ namespace ChemGo.Input.InputFileReadings
         private void ObtainInputList()
         {
             //打开输入文件，即打开控制文件
-            StreamReader inputFile = File.OpenText(commandLineInformation.inputFilePath);
+            StreamReader inputFile = File.OpenText(commandLineInformation.inputFileFullPath);
             string str = "";                                //临时用字符串，读一行文本
             inputList = new List<string>();
             while (inputFile.Peek() > -1)

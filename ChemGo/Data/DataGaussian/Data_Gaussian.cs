@@ -4,13 +4,16 @@ using System.Text;
 
 namespace ChemGo.Data.DataGaussian
 {
-    public class Data_Gaussian
+    public struct Data_Gaussian
     {
         /// <summary>
-        /// 高斯和ChemGo相连信息
+        /// 高斯和ChemGo相关联的信息
         /// </summary>
         public InterfaceBetweenGaussianAndChemGo interfaceBetweenGaussianAndChemGo;
 
+        /// <summary>
+        /// 高斯输入信息
+        /// </summary>
         public GaussianInputSegment gaussianInputSegment;
 
         

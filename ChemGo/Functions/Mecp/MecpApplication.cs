@@ -2,95 +2,51 @@
 using System.Collections.Generic;
 using System.Text;
 using ChemGo.Data;
-using ChemGo.Functions.Mecp.GenerateOtherProgramInputFileMaterial;
 
 namespace ChemGo.Functions.Mecp
 {
     class MecpApplication
     {
         private Data_ChemGo data_ChemGo;
+        private Output.WriteOutput mainOutput;
+        private bool isTermination;
+        private ChemGo.Data.Mecp mecp;
+        private ChemGo.Data.SinglePoint singlepoint;
 
 
-        public MecpApplication(Data_ChemGo data_ChemGo)
+        public bool IsTermination { get => isTermination; set => isTermination = value; }
+        public Data.Mecp Mecp { get => mecp; set => mecp = value; }
+        public SinglePoint Singlepoint { get => singlepoint; set => singlepoint = value; }
+
+        public MecpApplication(Data_ChemGo data_ChemGo, Output.WriteOutput mainOutput)
         {
             this.data_ChemGo = data_ChemGo;
+            this.mainOutput = mainOutput;
+            IsTermination = false;
         }
 
         public void Run()
         {
-            if(data_ChemGo.inputFile.labels.control.inputFileType!= InputFileType.ChemGo)
-            {
-                GenerateOtherProgramInputFileMaterial();
-            }            
+            //根据优化方法运行
+            RunningBasedOnOptimizationOptions();
         }
 
+
         /// <summary>
-        /// 生成输入文件素材
+        /// 运行优化MECP
         /// </summary>
-        private void GenerateOtherProgramInputFileMaterial()
+        private void RunningBasedOnOptimizationOptions()
         {
-            switch(data_ChemGo.inputFile.labels.control.inputFileType)
+            switch (data_ChemGo.inputFile.labels.keyword_mecp.opt.ToLower())
             {
-                case InputFileType.Gaussian:
-                    GenerateGaussianInputFileMaterial generateGaussianInputFileMaterial = new GenerateGaussianInputFileMaterial(data_ChemGo.otherProgramData.data_Gaussian.gaussianInputSegment,
-                        data_ChemGo.otherProgramData.data_Gaussian.interfaceBetweenGaussianAndChemGo, data_ChemGo.inputFile);
-                    generateGaussianInputFileMaterial.Run();
+                case "ln":
+                    Mecp_LagrangianNewtonClassMethod.Mecp_LagrangianNewtonApplication app = new Mecp_LagrangianNewtonClassMethod.Mecp_LagrangianNewtonApplication(data_ChemGo, mainOutput);
+                    app.Run();
+                    mecp = app.Mecp;
                     break;
                 default:
-                    throw new MecpException("Unknown fileType.\n  ChemGo.Functions.Mecp.GenerateOtherProgramInputFileMaterial(data_ChemGo.otherProgramData.data_Gaussian.gaussianInputSegment,data_ChemGo.otherProgramData.data_Gaussian.interfaceBetweenGaussianAndChemGo, data_ChemGo.inputFile) Error.\n");
+                    throw new MecpException("unknown MECP opt parameter. \n ChemGo.Functions.Mecp.OptimizeMecp() Error.");
             }
-            return;
         }
-
-        /// <summary>
-        /// 产生输入文件
-        /// </summary>
-        private void CreateInputFile()
-        {
-
-        }
-
-        /// <summary>
-        /// 计算单点
-        /// </summary>
-        private void CalculateSinglePoint()
-        {
-
-        }
-
-        /// <summary>
-        /// 是否终止Mecp计算
-        /// </summary>
-        private bool IsTerminate()
-        {
-            bool isTerminate = false;
-            return isTerminate;
-        }
-
-        /// <summary>
-        /// 获取单点信息
-        /// </summary>
-        private void ObtainSinglePointInformation()
-        {
-
-        }
-        
-        /// <summary>
-        /// 产生新参数
-        /// </summary>
-        private void GenerateNewParameter()
-        {
-
-        }
-
-        /// <summary>
-        /// 更新输入文件素材
-        /// </summary>
-        private void UpdataInputFileMaterial()
-        {
-            return;
-        }
-
-
     }
 }

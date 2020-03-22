@@ -62,8 +62,8 @@ namespace ChemGo.CommandLine.ArgsAnalysis
                 if(isAComputionalJob==false)
                 {
                     commandLineInformation.currentDirectory = null;
-                    commandLineInformation.inputFilePath = null;
-                    commandLineInformation.outputFilePath = null;
+                    commandLineInformation.inputFileFullPath = null;
+                    commandLineInformation.outputFileFullPath = null;
                     SingleArgsAnalyser_HelpOption singleArgsAnalyser_HelpOption = new SingleArgsAnalyser_HelpOption(arg);
                     singleArgsAnalyser_HelpOption.Run();
                     helpOptionType = singleArgsAnalyser_HelpOption.HelpOptionType;                    
@@ -74,8 +74,9 @@ namespace ChemGo.CommandLine.ArgsAnalysis
                     SingleArgsAnalyser_FilePath singleArgsAnalyser_FilePath = new SingleArgsAnalyser_FilePath(arg);
                     singleArgsAnalyser_FilePath.Run();                    
                     commandLineInformation.currentDirectory = singleArgsAnalyser_FilePath.CurrentDirectory;
-                    commandLineInformation.inputFilePath = singleArgsAnalyser_FilePath.InputFileFullPath;
-                    commandLineInformation.outputFilePath = singleArgsAnalyser_FilePath.OutputFileFullPath;
+                    commandLineInformation.inputFileDirectory = singleArgsAnalyser_FilePath.InputFileDirectory;
+                    commandLineInformation.inputFileFullPath = singleArgsAnalyser_FilePath.InputFileFullPath;
+                    commandLineInformation.outputFileFullPath = singleArgsAnalyser_FilePath.OutputFileFullPath;
                 }
             }
             catch(CommandLineException e)

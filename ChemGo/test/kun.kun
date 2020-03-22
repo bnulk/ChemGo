@@ -1,12 +1,12 @@
 PROGRAM ChemGo, Version 0.0.1
 Liu Kun  2019-08-20
 
-2019/9/14 18:01:14
+2020/3/22 16:36:02
 *********************************************
 Author Information: Liu Kun, College of Chemistry, Tianjin Normal University, Tianjin 300387, China
 Email: bnulk@foxmail.com
 You can obtain the newest version of the program by contacting the author.
-Program code can be downloaded from https://github.com/bnulk
+The code can be downloaded from https://github.com/bnulk
 *********************************************
 
 
@@ -50,7 +50,174 @@ Program code can be downloaded from https://github.com/bnulk
 bnulk@foxmail.com-CommandLineInformation
 *********************************************
 
-currentOS: Microsoft Windows NT 6.2.9200.0
+currentOS: Microsoft Windows NT 10.0.14393.0
 currentDirectory: D:\ChemGo\ChemGo\bin\Debug\netcoreapp2.1
 inputName: D:\ChemGo\ChemGo\test\kun.gjf
 outputName: D:\ChemGo\ChemGo\test\kun.kun
+
+
+bnulk@foxmail.com-InputFile
+*********************************************
+
+bnulk@foxmail.com-InputFile Summary
+*********************************************
+
+Control Section:
+     The Input File Type is:  Gaussian
+     Charge and Spin Multiplicity:  
+          0  1
+          0  3
+     Input Coordinate Type:  zMatrix
+     Task:  mecp
+MECP Keyword:
+     CoordinateType=noInfo  guessHessian=bfgs  hessianN=1  isReadFirst=False  judgement=global  
+     lambda=1.17  maxCon=0.001  rmsCon=0.0005  maxCyc=100  mecpFreq=liu  opt=ln  
+     scfTyp1=hftyp  scfTyp2=hftyp  stepSize=1
+Interface between Gaussian and ChemGo Info:
+     Command is:  g09
+     Task is:  mecp
+Gaussian Info:
+     Coordinate Type is:  zmatrix
+     Number Of Segment is:  4
+Segment Info:
+     -----FirstSection(%Section)-----
+     %mem=1000mb
+     %chk=LiuKun1.chk LiuKun2.chk
+     -----SecondSection(Route Section)-----
+     #p sto-3g scf=maxcycle=200 
+     -----ThirdSection(Title Section)-----
+     T1
+     -----FourthSection(Charge and Multiplicity)-----
+      
+     -----FifthSection(Molecular Specification Section)-----
+     H
+     N                  1            B1
+     C                  2            B2    1            A1
+     O                  3            B3    2            A2    1            D1    0
+
+     B1     =     1.250837
+     B2     =     1.362651
+     B3     =     1.234589
+     A1     =     107.696454
+     A2     =     134.13593
+     D1     =     182.0
+     -----SixthSection(Addition Section)-----
+     
+     
+bnulk@foxmail.com-DisposeInputCoordinate
+*********************************************
+
+bnulk@foxmail.com-Dispose Input Coordinate
+*********************************************
+
+Number of Atoms: 4
+ZMatrix:
+     H                                            
+     N       1       B1                              
+     C       2       B2       1       A1                
+     O       3       B3       2       A2       1       D1  
+
+     B1=1.250837
+     B2=1.362651
+     B3=1.234589
+     A1=107.696454
+     A2=134.13593
+     D1=182
+
+bnulk@foxmail.com-Mecp
+*********************************************
+
+Enter NumericalOptimization.SingleConstrainedOptimization.SingleLagrangianNewtonSpace.
+
+##########     I is:0     ##########
+The Value of Main Function is:-165.4287967
+The Constraint Function Value is:0.000835800000004383
+Lambda is:1.17
+Stepsize is:1
+----------
+I         ConstraintValue     Lambda              FunctionValue                 MaxForce            RMSForce            
+0         0.0008358           1.17                -165.4287967                  0.120600364         0.068760459         
+         Item               Value         Threshold         Converged?
+ Constrained Condition   8.35800E-004     1E-05                 No             
+ Maximum KKT Force       0.120600         0.001                 No             
+ RMS KKT Force           0.068760         0.0005                No             
+##########     I is:1     ##########
+The Value of Main Function is:-165.4065057
+The Constraint Function Value is:-0.000636499999984608
+Lambda is:0.693392421134361
+Stepsize is:1
+----------
+I         ConstraintValue     Lambda              FunctionValue                 MaxForce            RMSForce            
+0         0.0008358           1.17                -165.4287967                  0.120600364         0.068760459         
+1         -0.0006365          0.693392421         -165.4065057                  0.334116781         0.136550806         
+         Item               Value         Threshold         Converged?
+ Constrained Condition   -6.36500E-004    1E-05                 No             
+ Maximum KKT Force       0.334117         0.001                 No             
+ RMS KKT Force           0.136551         0.0005                No             
+##########     I is:2     ##########
+The Value of Main Function is:-165.4509457
+The Constraint Function Value is:-7.76999999914096E-05
+Lambda is:0.691447152767736
+Stepsize is:1
+----------
+I         ConstraintValue     Lambda              FunctionValue                 MaxForce            RMSForce            
+0         0.0008358           1.17                -165.4287967                  0.120600364         0.068760459         
+1         -0.0006365          0.693392421         -165.4065057                  0.334116781         0.136550806         
+2         -7.77E-05           0.691447153         -165.4509457                  0.088482207         0.03612407          
+         Item               Value         Threshold         Converged?
+ Constrained Condition   -7.77000E-005    1E-05                 No             
+ Maximum KKT Force       0.088482         0.001                 No             
+ RMS KKT Force           0.036124         0.0005                No             
+##########     I is:3     ##########
+The Value of Main Function is:-165.456493
+The Constraint Function Value is:-5.55999999960477E-05
+Lambda is:0.67735659686238
+Stepsize is:1
+----------
+I         ConstraintValue     Lambda              FunctionValue                 MaxForce            RMSForce            
+0         0.0008358           1.17                -165.4287967                  0.120600364         0.068760459         
+1         -0.0006365          0.693392421         -165.4065057                  0.334116781         0.136550806         
+2         -7.77E-05           0.691447153         -165.4509457                  0.088482207         0.03612407          
+3         -5.56E-05           0.677356597         -165.456493                   0.01278402          0.005220678         
+         Item               Value         Threshold         Converged?
+ Constrained Condition   -5.56000E-005    1E-05                 No             
+ Maximum KKT Force       0.012784         0.001                 No             
+ RMS KKT Force           0.005221         0.0005                No             
+##########     I is:4     ##########
+The Value of Main Function is:-165.4566049
+The Constraint Function Value is:-2.09999998901367E-06
+Lambda is:0.676228660522764
+Stepsize is:1
+----------
+I         ConstraintValue     Lambda              FunctionValue                 MaxForce            RMSForce            
+0         0.0008358           1.17                -165.4287967                  0.120600364         0.068760459         
+1         -0.0006365          0.693392421         -165.4065057                  0.334116781         0.136550806         
+2         -7.77E-05           0.691447153         -165.4509457                  0.088482207         0.03612407          
+3         -5.56E-05           0.677356597         -165.456493                   0.01278402          0.005220678         
+4         -2.1E-06            0.676228661         -165.4566049                  0.000397737         0.000162436         
+         Item               Value         Threshold         Converged?
+ Constrained Condition   -2.10000E-006    1E-05                 Yes            
+ Maximum KKT Force       0.000398         0.001                 Yes            
+ RMS KKT Force           0.000162         0.0005                Yes            
+bnulk@foxmail.com-Numerical Optimization Info
+*******************************************************************
+SingleSimpleLagrangianNewtonApplication Convergence!
+
+Leave NumericalOptimization.SingleConstrainedOptimization.SingleLagrangianNewtonSpace.
+
+bnulk@foxmail.com-MECP Result
+*********************************************
+
+Energy=-165.45660385
+Lambda=0.676228660522764
+-Lambda/(1-Lambda)=-2.08859950857481
+Gradient ratio between two states: 
+B1        =     smallGradient
+B2        =     -2.09     
+B3        =     -2.09     
+A1        =     smallGradient
+A2        =     -2.09     
+D1        =     smallGradient
+*****************************************************************
+Congratulations! the KKT point was found.
+*****************************************************************

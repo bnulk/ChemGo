@@ -51,6 +51,12 @@ namespace ChemGo.Input.InputFileReadings.GaussianInputFileReadings
             this.inputFile.coordinateType = transferGaussianInfoToChemGo.CoordinateType;
             this.inputFile.inputCartesian = transferGaussianInfoToChemGo.InputCartesian;
             this.inputFile.inputZmatrix = transferGaussianInfoToChemGo.InputZmatrix;
+            //控制坐标和输入坐标
+            if(this.inputFile.labels.control.coordinateType==CoordinateType.noInfo)
+            {
+                this.inputFile.labels.control.coordinateType = this.inputFile.coordinateType;
+            }
+
         }
 
     }

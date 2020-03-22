@@ -36,7 +36,6 @@ namespace ChemGo.Input.InputFileReadings.ChemGoInputFileReadings
             ChemGoInfoReader_Control control = new ChemGoInfoReader_Control(controlList);
             control.Run();
             inputFile.labels.control = control.Control;
-            inputFile.chargeAndMultiplicity = control.Control.chargeAndMultiplicity;
 
             //读分子说明
             ChemGoInfoReader_Molecule molecule = new ChemGoInfoReader_Molecule(moleculeList);

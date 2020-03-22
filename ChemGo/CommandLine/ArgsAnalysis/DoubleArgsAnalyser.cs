@@ -85,12 +85,14 @@ namespace ChemGo.CommandLine.ArgsAnalysis
             {
                 if (Path.IsPathRooted(arg0))
                 {
-                    commandLineInformation.inputFilePath = arg0;
+                    commandLineInformation.inputFileFullPath = arg0;
                 }
                 else
                 {
-                    commandLineInformation.inputFilePath = Path.Combine(commandLineInformation.currentDirectory, arg0);
+                    commandLineInformation.inputFileFullPath = Path.Combine(commandLineInformation.currentDirectory, arg0);
                 }
+                //获取输入文件所在的目录
+                commandLineInformation.inputFileDirectory = Path.GetDirectoryName(commandLineInformation.inputFileFullPath);
             }
             else
             {
@@ -117,11 +119,11 @@ namespace ChemGo.CommandLine.ArgsAnalysis
 
             if (Path.IsPathRooted(arg1))
             {
-                commandLineInformation.outputFilePath = arg1;
+                commandLineInformation.outputFileFullPath = arg1;
             }
             else
             {
-                commandLineInformation.outputFilePath = Path.Combine(commandLineInformation.currentDirectory, arg1);
+                commandLineInformation.outputFileFullPath = Path.Combine(commandLineInformation.currentDirectory, arg1);
             }
         }
 

@@ -73,7 +73,7 @@ namespace ChemGo.CommandLine.ArgsAnalysis
                     MultiArgsAnalysis(args);
                     break;
             }
-            ObtainInputFileType(commandLineInformation.inputFilePath);
+            ObtainInputFileType(commandLineInformation.inputFileFullPath);
         }
 
         /// <summary>

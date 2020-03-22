@@ -9,11 +9,11 @@ namespace ChemGo.Data
     /// </summary>
     public enum Task
     {
+        unknown,
         mecp,
         ts,
         min,
-        sp,
-        unknown
+        sp        
     }
 
     /// <summary>
@@ -31,8 +31,11 @@ namespace ChemGo.Data
     /// </summary>
     public enum CoordinateType
     {
+        noInfo,
         zMatrix,
-        Cartesian
+        Cartesian,
+        unknown
+        
     }
 
     
